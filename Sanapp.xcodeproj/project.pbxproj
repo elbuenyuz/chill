@@ -1,0 +1,779 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E18D3271F3A24C000D4666C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E18D3261F3A24C000D4666C /* GoogleService-Info.plist */; };
+		8E2403441F61E3B8002FA520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E2403431F61E3B8002FA520 /* Assets.xcassets */; };
+		8E2403461F620677002FA520 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2403451F620677002FA520 /* SettingsLauncher.swift */; };
+		8E2403481F6233ED002FA520 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2403471F6233ED002FA520 /* SettingsCell.swift */; };
+		8E24034A1F6306A2002FA520 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2403491F6306A2002FA520 /* Settings.swift */; };
+		8E24034C1F68A474002FA520 /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24034B1F68A474002FA520 /* StateCell.swift */; };
+		8E24034E1F68AFFE002FA520 /* StatesLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24034D1F68AFFE002FA520 /* StatesLauncher.swift */; };
+		8E2B8CF51F58CACD00AD9A7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B8CF41F58CACD00AD9A7E /* User.swift */; };
+		8E2B8CF71F58CB5F00AD9A7E /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B8CF61F58CB5F00AD9A7E /* State.swift */; };
+		8E2B8CF91F59D6F400AD9A7E /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B8CF81F59D6F400AD9A7E /* PageVC.swift */; };
+		8E2B8CFB1F5C765A00AD9A7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E2B8CFA1F5C765A00AD9A7E /* LaunchScreen.storyboard */; };
+		8E2B8CFD1F5C80F500AD9A7E /* Dosis-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E2B8CFC1F5C80F500AD9A7E /* Dosis-Regular.ttf */; };
+		8E2B8CFF1F5C810000AD9A7E /* Dosis-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E2B8CFE1F5C810000AD9A7E /* Dosis-Medium.ttf */; };
+		8E2B8D011F5F9AFF00AD9A7E /* MainVC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B8D001F5F9AFF00AD9A7E /* MainVC+Extensions.swift */; };
+		8E500DF41F55220B009069EE /* MainViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E500DF31F55220B009069EE /* MainViewVC.swift */; };
+		8EB3FA221F6B190D0068E45B /* sleep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EB3FA211F6B190D0068E45B /* sleep.mp3 */; };
+		8EB3FA241F6C49D20068E45B /* MainViewVC+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3FA231F6C49D20068E45B /* MainViewVC+Handlers.swift */; };
+		8EE532F31F54D14C006FB556 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE532F21F54D14C006FB556 /* LogVC.swift */; };
+		8EE532F51F54D2D5006FB556 /* LogVC+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE532F41F54D2D5006FB556 /* LogVC+Handlers.swift */; };
+		8EEF1C581EAAE4A000B5E8BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF1C571EAAE4A000B5E8BE /* AppDelegate.swift */; };
+		8EEF1C601EAAE4A000B5E8BE /* Sanapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF1C5E1EAAE4A000B5E8BE /* Sanapp.xcdatamodeld */; };
+		8EEF1C701EAAE4A000B5E8BE /* SanappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF1C6F1EAAE4A000B5E8BE /* SanappTests.swift */; };
+		8EEF1C7B1EAAE4A000B5E8BE /* SanappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF1C7A1EAAE4A000B5E8BE /* SanappUITests.swift */; };
+		9C34D96157322BDCC9D3AE21 /* Pods_Sanapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29DEC2121D54D771C89D04E /* Pods_Sanapp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8EEF1C6C1EAAE4A000B5E8BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EEF1C4C1EAAE4A000B5E8BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EEF1C531EAAE4A000B5E8BE;
+			remoteInfo = Sanapp;
+		};
+		8EEF1C771EAAE4A000B5E8BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EEF1C4C1EAAE4A000B5E8BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EEF1C531EAAE4A000B5E8BE;
+			remoteInfo = Sanapp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		379304EC328075EA8E65C6DF /* Pods-Sanapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sanapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sanapp/Pods-Sanapp.release.xcconfig"; sourceTree = "<group>"; };
+		8E18D3261F3A24C000D4666C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8E2403431F61E3B8002FA520 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E2403451F620677002FA520 /* SettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
+		8E2403471F6233ED002FA520 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		8E2403491F6306A2002FA520 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		8E24034B1F68A474002FA520 /* StateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
+		8E24034D1F68AFFE002FA520 /* StatesLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatesLauncher.swift; sourceTree = "<group>"; };
+		8E2B8CF41F58CACD00AD9A7E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8E2B8CF61F58CB5F00AD9A7E /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		8E2B8CF81F59D6F400AD9A7E /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
+		8E2B8CFA1F5C765A00AD9A7E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E2B8CFC1F5C80F500AD9A7E /* Dosis-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Regular.ttf"; sourceTree = "<group>"; };
+		8E2B8CFE1F5C810000AD9A7E /* Dosis-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.ttf"; sourceTree = "<group>"; };
+		8E2B8D001F5F9AFF00AD9A7E /* MainVC+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainVC+Extensions.swift"; sourceTree = "<group>"; };
+		8E4F24641EB9219E00C72D82 /* Sanapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sanapp.entitlements; sourceTree = "<group>"; };
+		8E500DF31F55220B009069EE /* MainViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewVC.swift; sourceTree = "<group>"; };
+		8E500DF51F55249A009069EE /* Sanapp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sanapp-Bridging-Header.h"; sourceTree = "<group>"; };
+		8EB3FA211F6B190D0068E45B /* sleep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sleep.mp3; sourceTree = "<group>"; };
+		8EB3FA231F6C49D20068E45B /* MainViewVC+Handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewVC+Handlers.swift"; sourceTree = "<group>"; };
+		8EE532F21F54D14C006FB556 /* LogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
+		8EE532F41F54D2D5006FB556 /* LogVC+Handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogVC+Handlers.swift"; sourceTree = "<group>"; };
+		8EEF1C541EAAE4A000B5E8BE /* Sanapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sanapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EEF1C571EAAE4A000B5E8BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8EEF1C5F1EAAE4A000B5E8BE /* Sanapp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sanapp.xcdatamodel; sourceTree = "<group>"; };
+		8EEF1C661EAAE4A000B5E8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EEF1C6B1EAAE4A000B5E8BE /* SanappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SanappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EEF1C6F1EAAE4A000B5E8BE /* SanappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanappTests.swift; sourceTree = "<group>"; };
+		8EEF1C711EAAE4A000B5E8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EEF1C761EAAE4A000B5E8BE /* SanappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SanappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EEF1C7A1EAAE4A000B5E8BE /* SanappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanappUITests.swift; sourceTree = "<group>"; };
+		8EEF1C7C1EAAE4A000B5E8BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A29DEC2121D54D771C89D04E /* Pods_Sanapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sanapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC7239A87B11C95687B69C9A /* Pods-Sanapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sanapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sanapp/Pods-Sanapp.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EEF1C511EAAE4A000B5E8BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C34D96157322BDCC9D3AE21 /* Pods_Sanapp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EEF1C681EAAE4A000B5E8BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EEF1C731EAAE4A000B5E8BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E2B3E411EB5DCB1002552BE /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8EB3FA211F6B190D0068E45B /* sleep.mp3 */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		8E3F66E41EB1380700BE4A5C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E2B8CF61F58CB5F00AD9A7E /* State.swift */,
+				8E2B8CF41F58CACD00AD9A7E /* User.swift */,
+				8E2403491F6306A2002FA520 /* Settings.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8E3F66E51EB1380F00BE4A5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E2403471F6233ED002FA520 /* SettingsCell.swift */,
+				8E24034B1F68A474002FA520 /* StateCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8E3F66E61EB1381400BE4A5C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8EE532F41F54D2D5006FB556 /* LogVC+Handlers.swift */,
+				8EE532F21F54D14C006FB556 /* LogVC.swift */,
+				8E500DF31F55220B009069EE /* MainViewVC.swift */,
+				8EB3FA231F6C49D20068E45B /* MainViewVC+Handlers.swift */,
+				8E2B8D001F5F9AFF00AD9A7E /* MainVC+Extensions.swift */,
+				8E2B8CF81F59D6F400AD9A7E /* PageVC.swift */,
+				8E2403451F620677002FA520 /* SettingsLauncher.swift */,
+				8E24034D1F68AFFE002FA520 /* StatesLauncher.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8E3F66E71EB1381B00BE4A5C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8E2B8CFE1F5C810000AD9A7E /* Dosis-Medium.ttf */,
+				8E2B8CFC1F5C80F500AD9A7E /* Dosis-Regular.ttf */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		8EEF1C4B1EAAE4A000B5E8BE = {
+			isa = PBXGroup;
+			children = (
+				8EEF1C561EAAE4A000B5E8BE /* Sanapp */,
+				8EEF1C6E1EAAE4A000B5E8BE /* SanappTests */,
+				8EEF1C791EAAE4A000B5E8BE /* SanappUITests */,
+				8EEF1C551EAAE4A000B5E8BE /* Products */,
+				F7F4667C0D85BE94B39B47BD /* Pods */,
+				DE110B848FB2B8C1AF121EC7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8EEF1C551EAAE4A000B5E8BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EEF1C541EAAE4A000B5E8BE /* Sanapp.app */,
+				8EEF1C6B1EAAE4A000B5E8BE /* SanappTests.xctest */,
+				8EEF1C761EAAE4A000B5E8BE /* SanappUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EEF1C561EAAE4A000B5E8BE /* Sanapp */ = {
+			isa = PBXGroup;
+			children = (
+				8E4F24641EB9219E00C72D82 /* Sanapp.entitlements */,
+				8E2B3E411EB5DCB1002552BE /* Audio */,
+				8E3F66E71EB1381B00BE4A5C /* Utils */,
+				8E3F66E61EB1381400BE4A5C /* Controller */,
+				8E3F66E51EB1380F00BE4A5C /* View */,
+				8E3F66E41EB1380700BE4A5C /* Model */,
+				8EEF1C571EAAE4A000B5E8BE /* AppDelegate.swift */,
+				8EEF1C661EAAE4A000B5E8BE /* Info.plist */,
+				8E18D3261F3A24C000D4666C /* GoogleService-Info.plist */,
+				8E500DF51F55249A009069EE /* Sanapp-Bridging-Header.h */,
+				8EEF1C5E1EAAE4A000B5E8BE /* Sanapp.xcdatamodeld */,
+				8E2403431F61E3B8002FA520 /* Assets.xcassets */,
+				8E2B8CFA1F5C765A00AD9A7E /* LaunchScreen.storyboard */,
+			);
+			path = Sanapp;
+			sourceTree = "<group>";
+		};
+		8EEF1C6E1EAAE4A000B5E8BE /* SanappTests */ = {
+			isa = PBXGroup;
+			children = (
+				8EEF1C6F1EAAE4A000B5E8BE /* SanappTests.swift */,
+				8EEF1C711EAAE4A000B5E8BE /* Info.plist */,
+			);
+			path = SanappTests;
+			sourceTree = "<group>";
+		};
+		8EEF1C791EAAE4A000B5E8BE /* SanappUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8EEF1C7A1EAAE4A000B5E8BE /* SanappUITests.swift */,
+				8EEF1C7C1EAAE4A000B5E8BE /* Info.plist */,
+			);
+			path = SanappUITests;
+			sourceTree = "<group>";
+		};
+		DE110B848FB2B8C1AF121EC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A29DEC2121D54D771C89D04E /* Pods_Sanapp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7F4667C0D85BE94B39B47BD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC7239A87B11C95687B69C9A /* Pods-Sanapp.debug.xcconfig */,
+				379304EC328075EA8E65C6DF /* Pods-Sanapp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8EEF1C531EAAE4A000B5E8BE /* Sanapp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EEF1C7F1EAAE4A000B5E8BE /* Build configuration list for PBXNativeTarget "Sanapp" */;
+			buildPhases = (
+				03BA5F2714EAA58C0E9E7A21 /* [CP] Check Pods Manifest.lock */,
+				8EEF1C501EAAE4A000B5E8BE /* Sources */,
+				8EEF1C511EAAE4A000B5E8BE /* Frameworks */,
+				8EEF1C521EAAE4A000B5E8BE /* Resources */,
+				3001DA286EBE8537CB6FB91B /* [CP] Embed Pods Frameworks */,
+				415F7458E35D85DC7DDCD467 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sanapp;
+			productName = Sanapp;
+			productReference = 8EEF1C541EAAE4A000B5E8BE /* Sanapp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8EEF1C6A1EAAE4A000B5E8BE /* SanappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EEF1C821EAAE4A000B5E8BE /* Build configuration list for PBXNativeTarget "SanappTests" */;
+			buildPhases = (
+				8EEF1C671EAAE4A000B5E8BE /* Sources */,
+				8EEF1C681EAAE4A000B5E8BE /* Frameworks */,
+				8EEF1C691EAAE4A000B5E8BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8EEF1C6D1EAAE4A000B5E8BE /* PBXTargetDependency */,
+			);
+			name = SanappTests;
+			productName = SanappTests;
+			productReference = 8EEF1C6B1EAAE4A000B5E8BE /* SanappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8EEF1C751EAAE4A000B5E8BE /* SanappUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EEF1C851EAAE4A000B5E8BE /* Build configuration list for PBXNativeTarget "SanappUITests" */;
+			buildPhases = (
+				8EEF1C721EAAE4A000B5E8BE /* Sources */,
+				8EEF1C731EAAE4A000B5E8BE /* Frameworks */,
+				8EEF1C741EAAE4A000B5E8BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8EEF1C781EAAE4A000B5E8BE /* PBXTargetDependency */,
+			);
+			name = SanappUITests;
+			productName = SanappUITests;
+			productReference = 8EEF1C761EAAE4A000B5E8BE /* SanappUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EEF1C4C1EAAE4A000B5E8BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Devius;
+				TargetAttributes = {
+					8EEF1C531EAAE4A000B5E8BE = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 7579Y7U4SZ;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					8EEF1C6A1EAAE4A000B5E8BE = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 83M9X3N895;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8EEF1C531EAAE4A000B5E8BE;
+					};
+					8EEF1C751EAAE4A000B5E8BE = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 83M9X3N895;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8EEF1C531EAAE4A000B5E8BE;
+					};
+				};
+			};
+			buildConfigurationList = 8EEF1C4F1EAAE4A000B5E8BE /* Build configuration list for PBXProject "Sanapp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+			);
+			mainGroup = 8EEF1C4B1EAAE4A000B5E8BE;
+			productRefGroup = 8EEF1C551EAAE4A000B5E8BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EEF1C531EAAE4A000B5E8BE /* Sanapp */,
+				8EEF1C6A1EAAE4A000B5E8BE /* SanappTests */,
+				8EEF1C751EAAE4A000B5E8BE /* SanappUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EEF1C521EAAE4A000B5E8BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E2B8CFB1F5C765A00AD9A7E /* LaunchScreen.storyboard in Resources */,
+				8E2B8CFF1F5C810000AD9A7E /* Dosis-Medium.ttf in Resources */,
+				8E2B8CFD1F5C80F500AD9A7E /* Dosis-Regular.ttf in Resources */,
+				8EB3FA221F6B190D0068E45B /* sleep.mp3 in Resources */,
+				8E18D3271F3A24C000D4666C /* GoogleService-Info.plist in Resources */,
+				8E2403441F61E3B8002FA520 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EEF1C691EAAE4A000B5E8BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EEF1C741EAAE4A000B5E8BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03BA5F2714EAA58C0E9E7A21 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sanapp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3001DA286EBE8537CB6FB91B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sanapp/Pods-Sanapp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sanapp/Pods-Sanapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		415F7458E35D85DC7DDCD467 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sanapp/Pods-Sanapp-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sanapp/Pods-Sanapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EEF1C501EAAE4A000B5E8BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EB3FA241F6C49D20068E45B /* MainViewVC+Handlers.swift in Sources */,
+				8E500DF41F55220B009069EE /* MainViewVC.swift in Sources */,
+				8E24034C1F68A474002FA520 /* StateCell.swift in Sources */,
+				8EE532F31F54D14C006FB556 /* LogVC.swift in Sources */,
+				8E2B8CF51F58CACD00AD9A7E /* User.swift in Sources */,
+				8E2B8D011F5F9AFF00AD9A7E /* MainVC+Extensions.swift in Sources */,
+				8E24034E1F68AFFE002FA520 /* StatesLauncher.swift in Sources */,
+				8EE532F51F54D2D5006FB556 /* LogVC+Handlers.swift in Sources */,
+				8EEF1C601EAAE4A000B5E8BE /* Sanapp.xcdatamodeld in Sources */,
+				8E24034A1F6306A2002FA520 /* Settings.swift in Sources */,
+				8E2403461F620677002FA520 /* SettingsLauncher.swift in Sources */,
+				8E2B8CF91F59D6F400AD9A7E /* PageVC.swift in Sources */,
+				8E2B8CF71F58CB5F00AD9A7E /* State.swift in Sources */,
+				8EEF1C581EAAE4A000B5E8BE /* AppDelegate.swift in Sources */,
+				8E2403481F6233ED002FA520 /* SettingsCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EEF1C671EAAE4A000B5E8BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEF1C701EAAE4A000B5E8BE /* SanappTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EEF1C721EAAE4A000B5E8BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EEF1C7B1EAAE4A000B5E8BE /* SanappUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8EEF1C6D1EAAE4A000B5E8BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EEF1C531EAAE4A000B5E8BE /* Sanapp */;
+			targetProxy = 8EEF1C6C1EAAE4A000B5E8BE /* PBXContainerItemProxy */;
+		};
+		8EEF1C781EAAE4A000B5E8BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EEF1C531EAAE4A000B5E8BE /* Sanapp */;
+			targetProxy = 8EEF1C771EAAE4A000B5E8BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8EEF1C7D1EAAE4A000B5E8BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: elbuenyuz@outlook.com (GD32KVB6L2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EEF1C7E1EAAE4A000B5E8BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: daniel ramirez (7579Y7U4SZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8EEF1C801EAAE4A000B5E8BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC7239A87B11C95687B69C9A /* Pods-Sanapp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Sanapp/Sanapp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7579Y7U4SZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Sanapp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.defiantDev.sanap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sanapp/Sanapp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8EEF1C811EAAE4A000B5E8BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379304EC328075EA8E65C6DF /* Pods-Sanapp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Sanapp/Sanapp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7579Y7U4SZ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Sanapp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.defiantDev.sanap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sanapp/Sanapp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		8EEF1C831EAAE4A000B5E8BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 83M9X3N895;
+				INFOPLIST_FILE = SanappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Devius.Sanapp.SanappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sanapp.app/Sanapp";
+			};
+			name = Debug;
+		};
+		8EEF1C841EAAE4A000B5E8BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 83M9X3N895;
+				INFOPLIST_FILE = SanappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Devius.Sanapp.SanappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sanapp.app/Sanapp";
+			};
+			name = Release;
+		};
+		8EEF1C861EAAE4A000B5E8BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 83M9X3N895;
+				INFOPLIST_FILE = SanappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Devius.Sanapp.SanappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Sanapp;
+			};
+			name = Debug;
+		};
+		8EEF1C871EAAE4A000B5E8BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 83M9X3N895;
+				INFOPLIST_FILE = SanappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Devius.Sanapp.SanappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Sanapp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EEF1C4F1EAAE4A000B5E8BE /* Build configuration list for PBXProject "Sanapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EEF1C7D1EAAE4A000B5E8BE /* Debug */,
+				8EEF1C7E1EAAE4A000B5E8BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EEF1C7F1EAAE4A000B5E8BE /* Build configuration list for PBXNativeTarget "Sanapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EEF1C801EAAE4A000B5E8BE /* Debug */,
+				8EEF1C811EAAE4A000B5E8BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EEF1C821EAAE4A000B5E8BE /* Build configuration list for PBXNativeTarget "SanappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EEF1C831EAAE4A000B5E8BE /* Debug */,
+				8EEF1C841EAAE4A000B5E8BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EEF1C851EAAE4A000B5E8BE /* Build configuration list for PBXNativeTarget "SanappUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EEF1C861EAAE4A000B5E8BE /* Debug */,
+				8EEF1C871EAAE4A000B5E8BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8EEF1C5E1EAAE4A000B5E8BE /* Sanapp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EEF1C5F1EAAE4A000B5E8BE /* Sanapp.xcdatamodel */,
+			);
+			currentVersion = 8EEF1C5F1EAAE4A000B5E8BE /* Sanapp.xcdatamodel */;
+			path = Sanapp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8EEF1C4C1EAAE4A000B5E8BE /* Project object */;
+}
