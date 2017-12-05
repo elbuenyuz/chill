@@ -83,4 +83,12 @@ extension MainViewVC {
         timerBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
     }
+    
+    func setupBackgroundAndBlur(image: UIImage){
+        
+        backgroundImage.image = image
+        backgroundImage.alpha = 1
+        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
+    }
 }

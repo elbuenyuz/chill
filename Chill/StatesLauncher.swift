@@ -22,8 +22,9 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.layer.borderColor = UIColor.lightGray.cgColor
         cv.isScrollEnabled = true
+        cv.isOpaque = true
         cv.layer.cornerRadius = 5
-        cv.backgroundColor = .clear
+        cv.backgroundColor = UIColor(red:0.81, green:0.81, blue:0.81, alpha:0.5)
         return cv
     }()
     
@@ -142,7 +143,9 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         
         let state = states[indexPath.item]
         guard let urlSong = state.audioUrl else {return}
-        self.homeController?.handleAudio()
+        
+        self.homeController?.handleAudio(nameAudio: urlSong)
+        
 
         handledismissBlackView(setting: state)
         if let imagen = UIImage(named: state.imgBg!){
@@ -150,6 +153,7 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
             //change background and the state name label.
             self.homeController?.setupBackgroundAndBlur(image: imagen)
             self.homeController?.songNameLabel.text = state.name
+            
         }
         
     }

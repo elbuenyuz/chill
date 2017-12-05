@@ -40,8 +40,9 @@ extension UIImageView {
         }
     }
 }
-
-
+//variables
+var isPlaying:Bool = false
+var currentSong:String = "init"
 var player: AVAudioPlayer?
 var currentState = 0
 var arraySongs: [String] = ["sleep.mp3"]
@@ -76,14 +77,16 @@ class MainViewVC: UIViewController {
         myBtn.setImage(#imageLiteral(resourceName: "stop").withRenderingMode(.alwaysOriginal), for: .normal)
         myBtn.layer.shadowColor = UIColor.black.cgColor
         myBtn.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)
+        myBtn.tintColor = .white
         myBtn.layer.masksToBounds = false
         myBtn.layer.shadowRadius = 1.0
-        myBtn.addTarget(self, action: #selector(handleAudio), for: .touchUpInside)
+        myBtn.addTarget(self, action: #selector(handleStateMusicBtn), for: .touchUpInside)
         myBtn.layer.shadowOpacity = 0.5
         myBtn.translatesAutoresizingMaskIntoConstraints = false
         
         return myBtn
     }()
+    
     
     let timerBtn: UIButton = {
         let myBtn = UIButton(type: UIButtonType.system)
@@ -128,7 +131,7 @@ class MainViewVC: UIViewController {
 
         view.addSubview(containerView)
         setupNavigationBarAndDesignItems()
-        checkIfUserIsLoggedIn()
+//        checkIfUserIsLoggedIn()
         observeStateAndSaveInfo()
         loadLocalStates()
         
@@ -137,11 +140,13 @@ class MainViewVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         view.backgroundColor = .black
-        checkIfUserIsLoggedIn()
+//        checkIfUserIsLoggedIn()
+        checkAndPresentForWalkthroug()
         
         if let name = UserDefaults.standard.object(forKey: userName){
             self.navigationItem.title = name as? String
         }
+       
         
     }
     
@@ -161,11 +166,11 @@ class MainViewVC: UIViewController {
     //load local music
     private func loadLocalStates(){
         //vamos a crear 3 states
-        let stateSleep = State(imgCell: "cell1.png", imgBg:"bg1.png", name: "Prueba State", audioUrl: "sleep.mp3", isPremium:false)
+        let stateSleep = State(imgCell: "cell1.png", imgBg:"bg1.png", name: "Sleep State", audioUrl: "sleep", isPremium:false)
         
-        let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax State", audioUrl: "relax.mp3", isPremium: false)
+        let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax State", audioUrl: "relax", isPremium: false)
         
-        let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study State", audioUrl: "sleep.mp3", isPremium: false)
+        let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study State", audioUrl: "study", isPremium: false)
         
         stateLaunch.states.append(stateSleep)
         stateLaunch.states.append(stateRelax)
@@ -177,21 +182,29 @@ class MainViewVC: UIViewController {
         stateLaunch.showSettings()
     }
     
-    var isPlaying:Bool = true
-    var currentSong:String = "init.mp3"
-    
-    func handleAudio(){
-        //audio
-        let path = Bundle.main.path(forResource: "sleep", ofType:"mp3")!
-        let url = URL(fileURLWithPath: path)
-        
+    func handleAudio(nameAudio:String?){
+        guard let path = Bundle.main.path(forResource: nameAudio, ofType:"mp3") else{return}
         do{
-           
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            player?.numberOfLoops = -1
             player?.play()
+            isPlaying = true
+            handleStateMusicBtn()
             
         }catch{
             print("error")
+        }
+    }
+    
+    func handleStateMusicBtn(){
+        if isPlaying == false{
+            playBtn.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            isPlaying = true
+            player?.pause()
+        }else{
+            playBtn.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
+            isPlaying = false
+            player?.play()
         }
     }
     
@@ -208,11 +221,7 @@ class MainViewVC: UIViewController {
     func handleMore(){
         settingsLaunch.showSettings()
     }
-    
-    
-    
-    
-    
+
     func setNavBarWithUser(user: User){
         
         UIView.animate(withDuration: 0.5, delay: 0.2, options: [], animations: {
@@ -237,16 +246,6 @@ class MainViewVC: UIViewController {
         default:
             return
         }
-    }
-
-    
-    func setupBackgroundAndBlur(image: UIImage){
-
-        backgroundImage.image = image
-        backgroundImage.alpha = 1
-        backgroundImage.contentMode = UIViewContentMode.scaleAspectFill
-        self.view.insertSubview(backgroundImage, at: 0)
-    
     }
     
     let userName = "userName"
@@ -322,8 +321,11 @@ class MainViewVC: UIViewController {
         do{
             try Auth.auth().signOut()
             print("valores renovados al salir , el usuario\(resp)")
-            UserDefaults.standard.removeObject(forKey: "completeWalk")
+//            UserDefaults.standard.removeObject(forKey: "completeWalk")
             UserDefaults.standard.removeObject(forKey: userName)
+            player?.stop()
+            isPlaying = false
+            handleStateMusicBtn()
 
             self.navigationItem.title = ""
         }catch let logoutError {
@@ -333,7 +335,6 @@ class MainViewVC: UIViewController {
         let loginController = LogVC()
         navigationController?.present(LogVC(), animated: true, completion:  nil)
     }
-
-    
 }
+
 

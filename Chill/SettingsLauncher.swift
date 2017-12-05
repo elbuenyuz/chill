@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
 //creamos la vista y mandamos llamar el contenedor de settings
-class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate{
     
     var homeController: MainViewVC?
     let blackView = UIView()
@@ -35,7 +36,31 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     let cellId = "cellId"
     let cellHeight: CGFloat = 50
     
+    //send email
+    func sendEmail(){
+        if MFMailComposeViewController.canSendMail(){
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["danramirez.villagomez@gmail.com"])
+            mail.setMessageBody("<p>Thanks for helping us to improve, we would contact you soon.</p>", isHTML: true)
+            
+            self.homeController?.present(mail, animated: true, completion: nil)
+        }else{
+            print("error: sending email fail")
+        }
+    }
+    //we check the result so we can dismiss the window
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     func showSettings(){
+        
+        if let nameUser = UserDefaults.standard.string(forKey: "userName"){
+            print("\(nameUser)")
+        }else{
+            print("no estamos reciviendo nada del usuario")
+        }
         
         if let window = UIApplication.shared.keyWindow{
             
@@ -67,8 +92,20 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     
     func shareAction(){
         
-       
+       let activityVC = UIActivityViewController(activityItems: [#imageLiteral(resourceName: "iTunesArtwork@1x")], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.homeController?.view
         
+        self.homeController?.present(activityVC, animated: true, completion: nil)
+        
+        
+    }
+    func feedbackAction(){
+        self.sendEmail()
+    }
+    
+    func rateAction(){
+        let appDelegate = AppDelegate()
+        appDelegate.requestReview()
     }
     
     func handledismissBlackView(setting: Setting){
@@ -84,11 +121,17 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
             }
 
             }) { (completed: Bool) in
+                
                 switch setting.name {
                 case "Logout":
                     self.homeController?.handleLogout()
                 case "Share":
                     self.shareAction()
+                case "Feedback":
+                    self.feedbackAction()
+                case "Rate Us":
+                    self.rateAction()
+                    
                 default:
                     break
                 }
@@ -111,8 +154,6 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let setting = settings[indexPath.item]
             handledismissBlackView(setting: setting)
-       
-        
         
         //name: "Share", imgName: "share"),Setting(name: "Feedback", imgName: "feedback"),Setting(name: "Rate Us", imgName: "like"),Setting(name: "Go Premium", imgName: "premium"),Setting(name: "Logout", imgName: "log"
         

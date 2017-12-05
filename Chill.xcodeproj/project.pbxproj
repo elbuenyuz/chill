@@ -26,6 +26,7 @@
 		8EE2BC8A1FD4FF1F005915E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2BC891FD4FF1F005915E8 /* GoogleService-Info.plist */; };
 		8EE2BC8C1FD5F1CC005915E8 /* init.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2BC8B1FD5F1CC005915E8 /* init.mp3 */; };
 		8EE2BC901FD60A6C005915E8 /* relax.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2BC8F1FD60A6C005915E8 /* relax.mp3 */; };
+		8EE2BC921FD62859005915E8 /* study.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2BC911FD62859005915E8 /* study.mp3 */; };
 		8EE532F31F54D14C006FB556 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE532F21F54D14C006FB556 /* LogVC.swift */; };
 		8EE532F51F54D2D5006FB556 /* LogVC+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE532F41F54D2D5006FB556 /* LogVC+Handlers.swift */; };
 		8EEF1C581EAAE4A000B5E8BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF1C571EAAE4A000B5E8BE /* AppDelegate.swift */; };
@@ -76,6 +77,7 @@
 		8EE2BC891FD4FF1F005915E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8EE2BC8B1FD5F1CC005915E8 /* init.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = init.mp3; sourceTree = "<group>"; };
 		8EE2BC8F1FD60A6C005915E8 /* relax.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = relax.mp3; sourceTree = "<group>"; };
+		8EE2BC911FD62859005915E8 /* study.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = study.mp3; sourceTree = "<group>"; };
 		8EE532F21F54D14C006FB556 /* LogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 		8EE532F41F54D2D5006FB556 /* LogVC+Handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogVC+Handlers.swift"; sourceTree = "<group>"; };
 		8EEF1C541EAAE4A000B5E8BE /* Chill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chill.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 		8E2B3E411EB5DCB1002552BE /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				8EE2BC911FD62859005915E8 /* study.mp3 */,
 				8EE2BC8B1FD5F1CC005915E8 /* init.mp3 */,
 				8EE2BC8F1FD60A6C005915E8 /* relax.mp3 */,
 				8EB3FA211F6B190D0068E45B /* sleep.mp3 */,
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2B8CFB1F5C765A00AD9A7E /* LaunchScreen.storyboard in Resources */,
+				8EE2BC921FD62859005915E8 /* study.mp3 in Resources */,
 				8EE2BC8A1FD4FF1F005915E8 /* GoogleService-Info.plist in Resources */,
 				8E2B8CFF1F5C810000AD9A7E /* Dosis-Medium.ttf in Resources */,
 				8EE2BC901FD60A6C005915E8 /* relax.mp3 in Resources */,

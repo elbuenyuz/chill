@@ -38,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3772088375813274~1208338343")
         return true
     }
-    
+    func requestReview(){
+        SKStoreReviewController.requestReview()
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -112,7 +114,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func playInitAudio(){
         
         let path = Bundle.main.path(forResource: "init", ofType:"mp3")!
-        let url = URL(fileURLWithPath: path)
         
         do{
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
