@@ -27,14 +27,15 @@ class State: NSObject {
     var name: String?
     var audioUrl:String?
     var isPremium: Bool?
+    var desc:String?
     
-    init(imgCell: String, imgBg:String, name: String, audioUrl:String, isPremium:Bool) {
+    init(imgCell: String, imgBg:String, name: String, audioUrl:String, isPremium:Bool,description:String) {
         self.imgCell = imgCell
         self.imgBg = imgBg
         self.name = name
         self.audioUrl = audioUrl
         self.isPremium = isPremium
-        
+        self.desc = description
     }
     
     override init() {

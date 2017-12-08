@@ -12,6 +12,7 @@ import MessageUI
 //creamos la vista y mandamos llamar el contenedor de settings
 class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate{
     
+    var isLoggedIn: Bool = false
     var homeController: MainViewVC?
     let blackView = UIView()
     
@@ -27,9 +28,10 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     }()
     
     //arraySettingsMenu
-    let settings: [Setting] = {
+    var settings: [Setting] = {
 
-        return [Setting(name: "Share", imgName: "share"),Setting(name: "Feedback", imgName: "feedback"),Setting(name: "Rate Us", imgName: "like"),Setting(name: "Go Premium", imgName: "premium"),Setting(name: "Logout", imgName: "log")]
+//        Setting(name: "Logout", imgName: "log")
+        return [Setting(name: "Share", imgName: "share"),Setting(name: "Feedback", imgName: "feedback"),Setting(name: "Rate Us", imgName: "like"),Setting(name: "Go Premium", imgName: "premium")]
     }()
     
     //se ejecutab al presionar el boton derecho
@@ -55,12 +57,6 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     }
     
     func showSettings(){
-        
-        if let nameUser = UserDefaults.standard.string(forKey: "userName"){
-            print("\(nameUser)")
-        }else{
-            print("no estamos reciviendo nada del usuario")
-        }
         
         if let window = UIApplication.shared.keyWindow{
             
@@ -108,6 +104,10 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
         appDelegate.requestReview()
     }
     
+    func premiumAction(){
+        
+    }
+    
     func handledismissBlackView(setting: Setting){
   
         
@@ -122,16 +122,18 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
 
             }) { (completed: Bool) in
                 
+                
                 switch setting.name {
                 case "Logout":
-                    self.homeController?.handleLogout()
+                    self.homeController?.handleLogout()                                        
                 case "Share":
                     self.shareAction()
                 case "Feedback":
                     self.feedbackAction()
                 case "Rate Us":
                     self.rateAction()
-                    
+                case "Go Premium":
+                    self.premiumAction()
                 default:
                     break
                 }

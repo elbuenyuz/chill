@@ -33,6 +33,14 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         return main
     }()
     
+    override init() {
+        super.init()
+        
+        // all work here
+        collectionV.register(StateCell.self, forCellWithReuseIdentifier: cellId)
+        collectionV.dataSource = self
+        collectionV.delegate = self
+    }
 
     
     func fetchDataToCollection(Array:[State]){
@@ -106,6 +114,7 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+    
     func handledismissBlackView(setting: State){
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options:.curveEaseOut, animations: {
@@ -144,7 +153,10 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         let state = states[indexPath.item]
         guard let urlSong = state.audioUrl else {return}
         
+        
         self.homeController?.handleAudio(nameAudio: urlSong)
+        
+        
         
 
         handledismissBlackView(setting: state)
@@ -166,18 +178,7 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         return 1
     }
     
-    override init() {
-        super.init()
-
-        // start doing here maybe
-   
-        collectionV.register(StateCell.self, forCellWithReuseIdentifier: cellId)
-        collectionV.dataSource = self
-        collectionV.delegate = self
-        
-        
-        
-    }
+    
     
 }
 

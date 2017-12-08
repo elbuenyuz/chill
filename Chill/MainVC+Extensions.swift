@@ -8,6 +8,7 @@ extension MainViewVC {
         setupRightNavItem()
         setupTransparentAndTitleNavBars()
         setupContainer()
+        setupTimeLabel()
         
 
         
@@ -82,6 +83,16 @@ extension MainViewVC {
         timerBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
         timerBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
+        
+    }
+    
+    private func setupTimeLabel(){
+        view.addSubview(timerLabel)
+        
+        timerLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        timerLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        timerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupBackgroundAndBlur(image: UIImage){
