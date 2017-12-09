@@ -122,7 +122,7 @@ class FirstVC: UIViewController {
     let infoLabel : UILabel = {
         let info = UILabel()
         info.font = UIFont(name: "Dosis-Regular", size: 16)
-        info.text = "Thank You Daniel for taking the time to Focus on you with this amazing therapy music app"
+        info.text = "Music not only reflects the kind of mood we are in, but it also affects it. Listen to our plailist so you can shift your mood and energy level and help you overcome and reach your mood balance today!. Chill is a mood maintenance."
         info.textColor = .white
         info.numberOfLines = 5
         info.textAlignment = .center
@@ -187,7 +187,7 @@ class MidVC: UIViewController {
     let titleLabel : UILabel = {
         let title = UILabel()
         title.font = UIFont(name: "Dosis-Regular", size: 40)
-        title.text = "Moods and states of mind"
+        title.text = "Chill's moods"
         title.textColor = .white
         title.textAlignment = .center
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -197,7 +197,7 @@ class MidVC: UIViewController {
     let infoLabel : UILabel = {
         let info = UILabel()
         info.font = UIFont(name: "Dosis-Regular", size: 16)
-        info.text = "This application it is going to help you in every different state that you go trhough your day, including a better sleep session, traffic session and even you can have your own Daily Routin."
+        info.text = "This application it is going to help you in every different daily moods, Because music activates every region of our brain, our brain chemistry can be altered through the use of music. So if you’re looking for ways to boost your actual mood."
         info.textColor = .white
         info.numberOfLines = 5
         info.textAlignment = .center
@@ -269,7 +269,7 @@ class EndVC: UIViewController {
     let infoLabel : UILabel = {
         let info = UILabel()
         info.font = UIFont(name: "Dosis-Regular", size: 16)
-        info.text = "You can support the app by giving us a feedback and a rate on the appstore, dont forget to subscribe to get acces to premium content like:"
+        info.text = "You can support the app by giving us a feedback and a rate on the appstore, dont forget to subscribe to get access to premium content."
         info.textColor = .white
         info.numberOfLines = 5
         info.textAlignment = .center
@@ -278,12 +278,16 @@ class EndVC: UIViewController {
     }()
     
     let button: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Lets Start", for: .normal)
-        button.titleLabel?.tintColor = .blue
-        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        let btn = UIButton(type: UIButtonType.system)
+        btn.setTitle("Got it", for: .normal)
+        btn.backgroundColor = UIColor(red:0.03, green:0.61, blue:0.54, alpha:1.0)
+        btn.layer.cornerRadius = 5
+        btn.tintColor = .white
+        btn.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        btn.layer.shadowColor = UIColor.red.cgColor
+        btn.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
     }()
     
     override func viewDidLoad() {

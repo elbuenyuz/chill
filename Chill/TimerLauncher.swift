@@ -39,13 +39,23 @@ class TimerLauncher: NSObject{
         return view
     }()
     
-    
-    let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .gray
-        label.text = "Set a time!"
+    var titleLabel: UILabel = {
+       let label = UILabel()
         label.textAlignment = .center
+        label.numberOfLines = 10
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.shadowColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:1.0)
+        label.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.numberOfLines = 8
         label.shadowColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:1.0)
         label.shadowOffset = CGSize(width: 0.5, height: 0.5)
         label.translatesAutoresizingMaskIntoConstraints =  false
@@ -71,7 +81,13 @@ class TimerLauncher: NSObject{
     var total = 0
     
     
-    
+    func handleDesc(state: State){
+        descriptionLabel.text = state.desc
+        descriptionLabel.setNeedsDisplay()
+        titleLabel.text = state.name
+        
+        
+    }
     
     func showSettings(){
         
@@ -107,7 +123,7 @@ class TimerLauncher: NSObject{
     
     func handleDescription(){
         print("handle description")
-        
+        self.handledismissBlackView()        
         
     }
     
@@ -118,19 +134,30 @@ class TimerLauncher: NSObject{
         container.heightAnchor.constraint(equalToConstant: 300).isActive = true
         container.widthAnchor.constraint(equalToConstant: width).isActive = true
         
-        container.addSubview(descriptionLabel)
+        container.addSubview(titleLabel)
         container.addSubview(btnSetTime)
+        container.addSubview(descriptionLabel)
         
-        descriptionLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -30).isActive = true
+        
+        titleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 10).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        descriptionLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
         descriptionLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalTo: container.widthAnchor, constant: -10).isActive = true
-        descriptionLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        descriptionLabel.widthAnchor.constraint(equalTo: btnSetTime.widthAnchor).isActive = true
+        descriptionLabel.heightAnchor.constraint(equalToConstant: 170).isActive = true
         
-        
-        btnSetTime.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10).isActive = true
-        btnSetTime.centerXAnchor.constraint(equalTo: descriptionLabel.centerXAnchor).isActive = true
-        btnSetTime.widthAnchor.constraint(equalTo: descriptionLabel.widthAnchor).isActive = true
+        btnSetTime.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        btnSetTime.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10).isActive = true
+        btnSetTime.widthAnchor.constraint(equalToConstant: width-10).isActive = true
         btnSetTime.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
+        
+        
+       
     }
     
     func handledismissBlackView(){

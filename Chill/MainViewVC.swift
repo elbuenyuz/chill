@@ -41,9 +41,10 @@ extension UIImageView {
     }
 }
 //variables Global
-var player: AVAudioPlayer?
+
 
 class MainViewVC: UIViewController {
+    var player: AVAudioPlayer?
     
     var isPlaying:Bool = false
     var currentTime:String = ""
@@ -67,8 +68,8 @@ class MainViewVC: UIViewController {
     
     lazy var songNameLabel: UILabel = {
         let name = UILabel()
-        name.text = "Welcome"
-        name.textColor = .white
+        name.text = "Balance State"
+        name.textColor = UIColor(red:0.03, green:0.61, blue:0.54, alpha:1.0)
         name.textAlignment = .center
         name.shadowColor = UIColor.gray
         name.shadowOffset = CGSize(width: 0.5, height: 0.5)
@@ -80,7 +81,6 @@ class MainViewVC: UIViewController {
     
     let playBtn: UIButton = {
         let myBtn = UIButton(type: UIButtonType.system)
-        myBtn.setImage(#imageLiteral(resourceName: "stop").withRenderingMode(.alwaysOriginal), for: .normal)
         myBtn.layer.shadowColor = UIColor.black.cgColor
         myBtn.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)
         myBtn.tintColor = .white
@@ -94,9 +94,9 @@ class MainViewVC: UIViewController {
     }()
     
     
-    let timerBtn: UIButton = {
+    let infoBtn: UIButton = {
         let myBtn = UIButton(type: UIButtonType.system)
-        myBtn.setImage(#imageLiteral(resourceName: "Timer").withRenderingMode(.alwaysOriginal), for: .normal)
+        myBtn.setImage(#imageLiteral(resourceName: "infoBtn").withRenderingMode(.alwaysOriginal), for: .normal)
         myBtn.layer.shadowColor = UIColor.black.cgColor
         myBtn.addTarget(self, action: #selector(handleTimer), for: .touchUpInside)
         myBtn.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)
@@ -111,7 +111,7 @@ class MainViewVC: UIViewController {
     
     let songBtn: UIButton = {
         let myBtn = UIButton(type: UIButtonType.system)
-        myBtn.setImage(#imageLiteral(resourceName: "song").withRenderingMode(.alwaysOriginal), for: .normal)
+        myBtn.setImage(#imageLiteral(resourceName: "p2").withRenderingMode(.alwaysOriginal), for: .normal)
         myBtn.layer.shadowColor = UIColor.black.cgColor
         myBtn.layer.shadowOffset = CGSize(width: 2.0, height: 1.0)
         myBtn.layer.masksToBounds = false
@@ -123,16 +123,6 @@ class MainViewVC: UIViewController {
         return myBtn
     }()
     
-    lazy var timerLabel: UILabel = {
-        let name = UILabel()
-        name.textColor = .white
-        name.textAlignment = .center
-        name.shadowColor = UIColor.gray
-        name.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        name.font  = UIFont(name: "Dosis-Regular", size: 15)
-        name.translatesAutoresizingMaskIntoConstraints = false
-        return name
-    }()
     
     let backgroundImage : UIImageView = {
         let img = UIImageView(frame: UIScreen.main.bounds)
@@ -151,13 +141,12 @@ class MainViewVC: UIViewController {
 //        checkIfUserIsLoggedIn()
         observeStateAndSaveInfo()
         loadLocalStates()
-        
-        timerLabel.text = "time to chill!"
+        player?.numberOfLoops = -1
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        playBtn.setImage(#imageLiteral(resourceName: "pauseBtn").withRenderingMode(.alwaysOriginal), for: .normal)
         view.backgroundColor = .black
 //        checkIfUserIsLoggedIn()
         checkAndPresentForWalkthroug()
@@ -165,8 +154,6 @@ class MainViewVC: UIViewController {
         if let name = UserDefaults.standard.object(forKey: userName){
             self.navigationItem.title = name as? String
         }
-        
-        print("current time:  \(currentTime)")
     }
 
     //Views
@@ -191,27 +178,59 @@ class MainViewVC: UIViewController {
     //load local music
     private func loadLocalStates(){
         //vamos a crear 3 states
-        let stateSleep = State(imgCell: "cell4.png", imgBg:"bg4.png", name: "Sleep State", audioUrl: "sleep", isPremium:false, description: "asdad")
-        let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax State", audioUrl: "relax", isPremium: false, description: "asdasdasd")
-        let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study State", audioUrl: "study", isPremium: false, description: " asdasdasd")
-        let stateThink = State(imgCell: "cell5", imgBg: "bg5", name: "Think State", audioUrl: "think", isPremium: false, description: "descriptions")
-        
-        stateLaunch.states.append(stateSleep)
-        stateLaunch.states.append(stateRelax)
-        stateLaunch.states.append(stateStudy)
-        stateLaunch.states.append(stateThink)
+            
+            let path = Bundle.main.path(forResource: "creative", ofType:"mp3")!
+            
+            do{
+                let statesVC = StatesLauncher()
+                let mainVC = MainViewVC()
+                
+                let stateSleep = State(imgCell: "cell4.png", imgBg:"bg4.png", name: "Sleep Mood", audioUrl: "sleep", isPremium:false, description: "")
+                
+                let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study Mood", audioUrl: "study", isPremium: false, description: " asdasdasd")
+                
+                let statePositive = State(imgCell: "cell5", imgBg: "bg5", name: "Positive Mood", audioUrl: "positive", isPremium: false, description: "descriptions")
+                
+                let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax Mood", audioUrl: "relax", isPremium: false, description: "Now is the only Time that is important – How often do we find ourselves worrying about the future? Anxiety about the future takes up a significant portion of our thoughts. To be in a State of relaxation means living only in the present moment. Use this MOOD to bring the calm into your day!.")
+                let stateCreative = State(imgCell: "cell9", imgBg: "bg9", name: "Creative Mood", audioUrl: "creative", isPremium: false, description: "“You’ve probably had the experience that you had some problem you were trying to solve, either a work problem or a very practical problem. Use this Mood to bring your creative side!.")
+               
+                stateLaunch.states.append(stateSleep)
+                stateLaunch.states.append(stateRelax)
+                stateLaunch.states.append(stateStudy)
+                stateLaunch.states.append(statePositive)
+                stateLaunch.states.append(stateCreative)
+                
+                handleState(state: stateCreative)
+                handleAudio(nameAudio: stateCreative.audioUrl)
+            }catch{
+                print("error")
+            }
     }
     
+    //received the state from stateLauncher
+    func handleState(state:State){
+       
+        if let imagen = UIImage(named: state.imgBg!), let descrip = state.desc{
+            setupBackgroundAndBlur(image: imagen)
+            songNameLabel.text = state.name
+            self.timerLaunch.handleDesc(state: state)
+        }
+        
+        
+        
+    }
 
     func handleShowSatesCollecton(){
         stateLaunch.showSettings()
     }
+    
     func handleTimer(){
-        DispatchQueue.main.async {
-            self.timerLaunch.showSettings()
-        }
+     
+        timerLaunch.showSettings()
+        
         
     }
+    
     //showMoreToolsMennu
     func handleMore(){
         settingsLaunch.showSettings()
@@ -221,7 +240,7 @@ class MainViewVC: UIViewController {
         guard let path = Bundle.main.path(forResource: nameAudio, ofType:"mp3") else{return}
         do{
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            player?.numberOfLoops = -1
+            
             player?.play()
             isPlaying = true
             handleStateMusicBtn()
@@ -233,13 +252,13 @@ class MainViewVC: UIViewController {
     
     func handleStateMusicBtn(){
         if isPlaying == false{
-            playBtn.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            playBtn.setImage(#imageLiteral(resourceName: "playBtn").withRenderingMode(.alwaysOriginal), for: .normal)
             isPlaying = true
             player?.pause()
             
             
         }else{
-            playBtn.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
+            playBtn.setImage(#imageLiteral(resourceName: "pauseBtn").withRenderingMode(.alwaysOriginal), for: .normal)
             isPlaying = false
             player?.play()
             

@@ -8,7 +8,6 @@ extension MainViewVC {
         setupRightNavItem()
         setupTransparentAndTitleNavBars()
         setupContainer()
-        setupTimeLabel()
         
 
         
@@ -57,42 +56,34 @@ extension MainViewVC {
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70).isActive = true
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         containerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         containerView.addSubview(songNameLabel)
-        songNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4).isActive = true
-        songNameLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        songNameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        songNameLabel.bottomAnchor.constraint(equalTo: playBtn.topAnchor, constant: 8)
+        songNameLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        songNameLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        songNameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        songNameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         containerView.addSubview(playBtn)
-        playBtn.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 8).isActive = true
+        playBtn.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         playBtn.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        playBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        playBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        playBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        playBtn.heightAnchor.constraint(equalToConstant:100).isActive = true
         
         containerView.addSubview(songBtn)
-        songBtn.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16).isActive = true
-        songBtn.centerYAnchor.constraint(equalTo: playBtn.centerYAnchor).isActive  = true
-        songBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        songBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        songBtn.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -8).isActive = true
+        songBtn.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive  = true
+        songBtn.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        songBtn.heightAnchor.constraint(equalToConstant: 85).isActive = true
         
-        containerView.addSubview(timerBtn)
-        timerBtn.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16).isActive = true
-        timerBtn.centerYAnchor.constraint(equalTo: playBtn.centerYAnchor).isActive  = true
-        timerBtn.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        timerBtn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        containerView.addSubview(infoBtn)
+     
+        infoBtn.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
+        infoBtn.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive  = true
+        infoBtn.heightAnchor.constraint(equalToConstant: 85).isActive = true
+        infoBtn.widthAnchor.constraint(equalToConstant: 85).isActive = true
         
         
-    }
-    
-    private func setupTimeLabel(){
-        view.addSubview(timerLabel)
-        
-        timerLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        timerLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        timerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupBackgroundAndBlur(image: UIImage){

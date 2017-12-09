@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let pageVC = PageVC(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         window?.rootViewController = UINavigationController(rootViewController: MainViewVC())
-        playInitAudio()
         FirebaseApp.configure()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3772088375813274~1208338343")
         return true
@@ -109,20 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-    }
-    
-    func playInitAudio(){
-        
-        let path = Bundle.main.path(forResource: "init", ofType:"mp3")!
-        
-        do{
-            try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            player?.play()
-            
-        }catch{
-            print("error")
-        }
-        
     }
 }
 

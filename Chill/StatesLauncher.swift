@@ -160,13 +160,9 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         
 
         handledismissBlackView(setting: state)
-        if let imagen = UIImage(named: state.imgBg!){
-            
-            //change background and the state name label.
-            self.homeController?.setupBackgroundAndBlur(image: imagen)
-            self.homeController?.songNameLabel.text = state.name
-            
-        }
+        DispatchQueue.main.async(execute: {
+            self.homeController?.handleState(state:state)
+        })
         
     }
     
