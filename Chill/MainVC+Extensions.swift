@@ -16,16 +16,22 @@ extension MainViewVC {
     private func setupLeftNavItem(){
         //leftItem
         let followButton = UIButton(type: .system)
-        followButton.setImage(#imageLiteral(resourceName: "miniLogo").withRenderingMode(.alwaysOriginal), for: .normal)
-        followButton.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        followButton.setImage(#imageLiteral(resourceName: "logo-1").withRenderingMode(.alwaysOriginal), for: .normal)
+        followButton.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        followButton.addTarget(self, action: #selector(handlePremium), for: .touchUpInside)
+        followButton.clipsToBounds = true
         navigationItem.leftBarButtonItem  = UIBarButtonItem(customView: followButton)
+    }
+    
+    func handlePremium(){
+        checkIfUserIsLoggedIn()
     }
     
     private func setupRightNavItem(){
         //rigthItem compose
         let composeButton = UIButton(type: .system)
-        composeButton.setImage(#imageLiteral(resourceName: "OvalsMoreOptions").withRenderingMode(.alwaysOriginal), for: .normal)
-        composeButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        composeButton.setImage(#imageLiteral(resourceName: "tools").withRenderingMode(.alwaysOriginal), for: .normal)
+        composeButton.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
         composeButton.contentMode = .scaleAspectFit
         
         composeButton.addTarget(self, action: #selector(self.handleMore), for: .touchUpInside)

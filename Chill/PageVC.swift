@@ -121,8 +121,8 @@ class FirstVC: UIViewController {
     
     let infoLabel : UILabel = {
         let info = UILabel()
-        info.font = UIFont(name: "Dosis-Regular", size: 16)
-        info.text = "Music not only reflects the kind of mood we are in, but it also affects it. Listen to our plailist so you can shift your mood and energy level and help you overcome and reach your mood balance today!. Chill is a mood maintenance."
+        info.font = UIFont(name: "Dosis-Regular", size: 18)
+        info.text = "Shift your mood and energy level by listening to our playlist. Music can reflect the kind of mood we are in, and it can also affect it. It can help you overcome negative energy and aid in reaching your mood balance."
         info.textColor = .white
         info.numberOfLines = 5
         info.textAlignment = .center
@@ -197,7 +197,7 @@ class MidVC: UIViewController {
     let infoLabel : UILabel = {
         let info = UILabel()
         info.font = UIFont(name: "Dosis-Regular", size: 16)
-        info.text = "This application it is going to help you in every different daily moods, Because music activates every region of our brain, our brain chemistry can be altered through the use of music. So if you’re looking for ways to boost your actual mood."
+        info.text = "'Chill' is a mood maintenance application and it's designed to help you reach a mood balance. Because music activates every region of our brain, music can alter brain activity. Our professionals have created specialized music to help you uplift your mood and bring positivity to your life."
         info.textColor = .white
         info.numberOfLines = 5
         info.textAlignment = .center
@@ -269,7 +269,7 @@ class EndVC: UIViewController {
     let infoLabel : UILabel = {
         let info = UILabel()
         info.font = UIFont(name: "Dosis-Regular", size: 16)
-        info.text = "You can support the app by giving us a feedback and a rate on the appstore, dont forget to subscribe to get access to premium content."
+        info.text = "You can support the app by giving us feedback and rating us on the appstore. Dont forget to subscribe to get access to premium content. So, if you’re looking for ways to boost your mood- try us for free!"
         info.textColor = .white
         info.numberOfLines = 5
         info.textAlignment = .center

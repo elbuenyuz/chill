@@ -31,7 +31,7 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     var settings: [Setting] = {
 
 //        Setting(name: "Logout", imgName: "log")
-        return [Setting(name: "Share", imgName: "share"),Setting(name: "Feedback", imgName: "feedback"),Setting(name: "Rate Us", imgName: "like"),Setting(name: "Go Premium", imgName: "premium")]
+        return [Setting(name: "Share", imgName: "share"),Setting(name: "Feedback", imgName: "feedback"),Setting(name: "Rate Us", imgName: "like"),Setting(name: "Go Premium", imgName: "premium"),Setting(name: "Logout", imgName: "log")]
     }()
     
     //se ejecutab al presionar el boton derecho
@@ -87,8 +87,8 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     }
     
     func shareAction(){
-        
-       let activityVC = UIActivityViewController(activityItems: [#imageLiteral(resourceName: "iTunesArtwork@1x")], applicationActivities: nil)
+        print("share")
+       let activityVC = UIActivityViewController(activityItems: ["Hey check out this app and balance your daily mood today!"], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.homeController?.view
         
         self.homeController?.present(activityVC, animated: true, completion: nil)
@@ -105,7 +105,7 @@ class SettingsLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewData
     }
     
     func premiumAction(){
-        
+        self.homeController?.checkIfUserIsLoggedIn()
     }
     
     func handledismissBlackView(setting: Setting){

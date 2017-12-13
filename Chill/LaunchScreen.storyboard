@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,28 +27,30 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sanapp-Launcher" translatesAutoresizingMaskIntoConstraints="NO" id="pGC-36-ofY">
-                                <rect key="frame" x="67" y="213" width="240" height="240"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZHw-i7-le0">
+                                <rect key="frame" x="67" y="180" width="240" height="228"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="sVx-FC-DiY"/>
+                                    <constraint firstAttribute="height" constant="228" id="yZI-eR-mZv"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.39113292098045349" green="0.83286863565444946" blue="0.77990990877151489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pGC-36-ofY" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="193" id="5Rg-QU-pf4"/>
                             <constraint firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstItem="pGC-36-ofY" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="51" id="8V6-uq-iTl"/>
-                            <constraint firstItem="pGC-36-ofY" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="CIb-rJ-RxN"/>
-                            <constraint firstItem="pGC-36-ofY" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NMK-zz-LFg"/>
+                            <constraint firstItem="ZHw-i7-le0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MxF-il-JD7"/>
                             <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
+                            <constraint firstItem="ZHw-i7-le0" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="160" id="hyq-qi-Bpj"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Sanapp-Launcher" width="230" height="233"/>
+        <image name="logo" width="1536" height="1536"/>
     </resources>
 </document>

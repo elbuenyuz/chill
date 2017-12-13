@@ -11,6 +11,7 @@ import Firebase
 
 class LogVC: UIViewController {
     
+    var homeController: MainViewVC?
     
     //funcion para manejar el registro y el login
     @objc func handleLoginRegister(){
@@ -59,7 +60,7 @@ class LogVC: UIViewController {
         
         let button = UIButton(type: .system)
         button.backgroundColor = blue
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Subscribe, for extra weekly content", for: .normal)
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
@@ -71,6 +72,25 @@ class LogVC: UIViewController {
         return button
         
     }()
+    
+    let skipButton: UIButton = {
+        let blue = UIColor(r: 25, g: 133, b: 231)
+        
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(red:0.03, green:0.61, blue:0.54, alpha:1.0)
+        button.setTitle("Skip, I'll come back later", for: .normal)
+        button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        //font bold and size
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        //we add the target
+        button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        return button
+        
+    }()
+    
     //inputsContainer creation
     let inputsContainer: UIView = {
         let view = UIView()
@@ -134,7 +154,7 @@ class LogVC: UIViewController {
     //profile image/logo cause it change LAZY
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "Sanapp-Launcher")
+        imageView.image = #imageLiteral(resourceName: "pBanner")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = false
@@ -173,7 +193,7 @@ class LogVC: UIViewController {
         
         let lbl = UILabel()
         lbl.text = "By using Sanap you agree to the Terms, Cookies Policy and Privacy Policy."
-        lbl.font = UIFont(name: "MarcellusSC-Regular", size: 14)
+        lbl.font = UIFont(name: "MarcellusSC-Regular", size: 12)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textAlignment = .center
         lbl.numberOfLines = 2
@@ -188,6 +208,7 @@ class LogVC: UIViewController {
         //sacamos el nombre a tra vez de la posicion
         let title = loginRegisterSegmentedControl.titleForSegment(at: loginRegisterSegmentedControl.selectedSegmentIndex)
         loginRegisterButton.setTitle(title, for: .normal)
+        
         
         //this fixed the nameTextfield bug.
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
@@ -231,12 +252,14 @@ class LogVC: UIViewController {
         view.addSubview(blurView)
         view.addSubview(inputsContainer)
         view.addSubview(loginRegisterButton)
+        view.addSubview(skipButton)
         view.addSubview(profileImageView)
         view.addSubview(policyUILabel)
         view.addSubview(loginRegisterSegmentedControl)
         
         setupInputConstainer()
         setupRegisterButton()
+        setupSkipButton()
         setupImageLogo()
         setupPolicyLabel()
         setupBgImageView()
@@ -256,6 +279,7 @@ class LogVC: UIViewController {
         blurView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
+    
     //func para implementar UISegmentedControl constrains
     func setupLoginRegisterSegmentedControl(){
         //need x,y,width,heigth
@@ -268,7 +292,7 @@ class LogVC: UIViewController {
     //funcion para aimplementar el label constrains
     func setupPolicyLabel(){
         policyUILabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        policyUILabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12).isActive = true
+        policyUILabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -4).isActive = true
         policyUILabel.widthAnchor.constraint(equalTo: inputsContainer.widthAnchor, constant: 12).isActive = true
         policyUILabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
@@ -277,9 +301,9 @@ class LogVC: UIViewController {
     func setupImageLogo(){
         
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 280).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 180).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 4).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     var inputsContainerHeightAnchor:NSLayoutConstraint?
@@ -379,6 +403,19 @@ class LogVC: UIViewController {
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    func setupSkipButton(){
+        
+        skipButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor).isActive = true
+        skipButton.centerXAnchor.constraint(equalTo: loginRegisterButton.centerXAnchor).isActive = true
+        skipButton.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
+        skipButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     //change the statusBar to white

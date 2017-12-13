@@ -23,6 +23,7 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         cv.layer.borderColor = UIColor.lightGray.cgColor
         cv.isScrollEnabled = true
         cv.isOpaque = true
+        cv.isScrollEnabled = true
         cv.layer.cornerRadius = 5
         cv.backgroundColor = UIColor(red:0.81, green:0.81, blue:0.81, alpha:0.5)
         return cv
@@ -108,7 +109,7 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
                 
                 self.blackView.alpha = 1
                 
-                self.collectionV.frame = CGRect(x: window.frame.width/2 - self.collectionV.frame.width/2, y: window.frame.height - cHeigth, width: self.collectionV.frame.width, height: self.collectionV.frame.height)
+                self.collectionV.frame = CGRect(x: window.frame.width/2 - self.collectionV.frame.width/2, y: window.frame.height - cHeigth, width: self.collectionV.frame.width, height: self.collectionV.frame.height-80)
                 
             }, completion: nil)
         }
@@ -151,13 +152,8 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let state = states[indexPath.item]
-        guard let urlSong = state.audioUrl else {return}
-        
-        
-        self.homeController?.handleAudio(nameAudio: urlSong)
-        
-        
-        
+
+        self.homeController?.handleAudio(state: state)
 
         handledismissBlackView(setting: state)
         DispatchQueue.main.async(execute: {

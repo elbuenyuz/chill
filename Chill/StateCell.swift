@@ -36,7 +36,7 @@ class StateCell: BaseCell {
             self.settingName.text = state?.name
             guard let imgcell = state?.imgCell, let premium = state?.isPremium else { return }
             self.imgBack.image = UIImage(named: imgcell)
-            self.imgPremium.image = premium ? #imageLiteral(resourceName: "p2") : nil
+            self.imgPremium.image = premium ? #imageLiteral(resourceName: "lock") : nil
             
         }
     }

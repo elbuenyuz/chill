@@ -46,10 +46,10 @@ extension UIImageView {
 class MainViewVC: UIViewController {
     var player: AVAudioPlayer?
     
-    var isPlaying:Bool = false
-    var currentTime:String = ""
+    var isPlaying:Bool?
     
-    var currentState = 0
+    
+    var currentState: State?
     var arraySongs: [String] = ["sleep.mp3"]
     var resp:Bool = false
     
@@ -69,9 +69,9 @@ class MainViewVC: UIViewController {
     lazy var songNameLabel: UILabel = {
         let name = UILabel()
         name.text = "Balance State"
-        name.textColor = UIColor(red:0.03, green:0.61, blue:0.54, alpha:1.0)
+        name.textColor = .black
         name.textAlignment = .center
-        name.shadowColor = UIColor.gray
+        name.shadowColor = .white
         name.shadowOffset = CGSize(width: 0.5, height: 0.5)
         name.isOpaque = true
         name.font  = UIFont(name: "Dosis-Medium", size: 18)
@@ -135,7 +135,6 @@ class MainViewVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.addSubview(containerView)
         setupNavigationBarAndDesignItems()
 //        checkIfUserIsLoggedIn()
@@ -146,14 +145,11 @@ class MainViewVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        playBtn.setImage(#imageLiteral(resourceName: "pauseBtn").withRenderingMode(.alwaysOriginal), for: .normal)
+        
         view.backgroundColor = .black
 //        checkIfUserIsLoggedIn()
         checkAndPresentForWalkthroug()
         
-        if let name = UserDefaults.standard.object(forKey: userName){
-            self.navigationItem.title = name as? String
-        }
     }
 
     //Views
@@ -185,23 +181,32 @@ class MainViewVC: UIViewController {
                 let statesVC = StatesLauncher()
                 let mainVC = MainViewVC()
                 
-                let stateSleep = State(imgCell: "cell4.png", imgBg:"bg4.png", name: "Sleep Mood", audioUrl: "sleep", isPremium:false, description: "")
+                let stateSleep = State(imgCell: "cell4.png", imgBg:"bg4.png", name: "Sleepy", audioUrl: "sleep", isPremium:false, description: "Many people choose this mood to help them relax, wash away the days troubles and fall asleep. Use this mood to bring you the rest you are looking for after a hard day.")
                 
-                let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study Mood", audioUrl: "study", isPremium: false, description: " asdasdasd")
+                let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study", audioUrl: "study", isPremium: false, description: "Study mood can help  stimulate new neural connections, regain memories,and activate attention span. Use this mood to focus on a specific task.")
                 
-                let statePositive = State(imgCell: "cell5", imgBg: "bg5", name: "Positive Mood", audioUrl: "positive", isPremium: false, description: "descriptions")
+                let statePositive = State(imgCell: "cell5", imgBg: "bg5", name: "Positivity", audioUrl: "positive", isPremium: false, description: "We all have days when we feel out of sorts. During those days, we are more susceptible to negativite energy than other days. Use the Positivity mood to balance the energy of your body! Take a deep breath, and let the negativity out of your body.")
                 
-                let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax Mood", audioUrl: "relax", isPremium: false, description: "Now is the only Time that is important – How often do we find ourselves worrying about the future? Anxiety about the future takes up a significant portion of our thoughts. To be in a State of relaxation means living only in the present moment. Use this MOOD to bring the calm into your day!.")
-                let stateCreative = State(imgCell: "cell9", imgBg: "bg9", name: "Creative Mood", audioUrl: "creative", isPremium: false, description: "“You’ve probably had the experience that you had some problem you were trying to solve, either a work problem or a very practical problem. Use this Mood to bring your creative side!.")
+                let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax", audioUrl: "relax", isPremium: false, description: "Sometimes we concentrate so much on the future, that we stress ourselves out.  Anxiety about the future takes up a significant portion of our thoughts. Relax mood will help you cool down. Remember, live in the present. Now is the only moment that is important. Use this mood to bring calm to your day!")
+                let stateMeditation = State(imgCell: "cell9", imgBg: "bg9", name: "Reflection", audioUrl: "creative", isPremium: false, description: "The Meditation mood can help you when you are feeling nostalgic. It can help you bring back positive memories, and make you remember all of your past successes. Remember yourself, and remember how truly remarkable you are.")
+                
+                let stateCreative = State(imgCell: "cell10", imgBg: "bg10", name:"Creativity", audioUrl: "creative", isPremium: true, description: "in the groove, and keep you cool and creative when you need it the most. Fire up your senses and get your creative juices flowing. Use this Mood to bring your creative side.")
                
+                
+                
                 stateLaunch.states.append(stateSleep)
                 stateLaunch.states.append(stateRelax)
                 stateLaunch.states.append(stateStudy)
                 stateLaunch.states.append(statePositive)
                 stateLaunch.states.append(stateCreative)
+                stateLaunch.states.append(stateMeditation)
+              
                 
-                handleState(state: stateCreative)
-                handleAudio(nameAudio: stateCreative.audioUrl)
+                handleState(state: stateMeditation)
+                handleAudio(state: stateMeditation)
+                currentState = stateMeditation
+              
+                
             }catch{
                 print("error")
             }
@@ -214,6 +219,8 @@ class MainViewVC: UIViewController {
             setupBackgroundAndBlur(image: imagen)
             songNameLabel.text = state.name
             self.timerLaunch.handleDesc(state: state)
+            currentState = state
+        
         }
         
         
@@ -225,10 +232,8 @@ class MainViewVC: UIViewController {
     }
     
     func handleTimer(){
-     
         timerLaunch.showSettings()
-        
-        
+
     }
     
     //showMoreToolsMennu
@@ -236,8 +241,32 @@ class MainViewVC: UIViewController {
         settingsLaunch.showSettings()
     }
     
-    func handleAudio(nameAudio:String?){
-        guard let path = Bundle.main.path(forResource: nameAudio, ofType:"mp3") else{return}
+    var access = false
+    func handleAudio(state:State){
+        guard let urlSong = state.audioUrl else {return}
+         guard let path = Bundle.main.path(forResource: urlSong, ofType:"mp3") else{return}
+        
+        switch state.isPremium {
+        case true?:
+            print("is premium")
+            //if user is premium to he can acces if not we are going to send him to subscribe
+            if Auth.auth().currentUser?.uid != nil{
+                playAudio(path: path)
+                print("playing music premium")
+            }else{
+                checkIfUserIsLoggedIn()
+            }
+        case false?:
+            playAudio(path: path)
+            print("playing music not premium")
+            
+        default:
+            return
+        }
+    }
+    
+    
+    func playAudio(path: String){
         do{
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
             
@@ -251,18 +280,16 @@ class MainViewVC: UIViewController {
     }
     
     func handleStateMusicBtn(){
-        if isPlaying == false{
-            playBtn.setImage(#imageLiteral(resourceName: "playBtn").withRenderingMode(.alwaysOriginal), for: .normal)
-            isPlaying = true
-            player?.pause()
-            
-            
-        }else{
+        
+        if isPlaying == true{
             playBtn.setImage(#imageLiteral(resourceName: "pauseBtn").withRenderingMode(.alwaysOriginal), for: .normal)
             isPlaying = false
             player?.play()
+        }else{
             
-            
+            isPlaying = true
+            playBtn.setImage(#imageLiteral(resourceName: "playBtn").withRenderingMode(.alwaysOriginal), for: .normal)
+            player?.pause()
         }
     }
     
@@ -332,6 +359,7 @@ class MainViewVC: UIViewController {
                     //uder name default
                     UserDefaults.standard.setValue(user.name, forKeyPath: "userName")
                     
+                    
                 }
                     self.settingsLaunch.isLoggedIn = true
                     self.setNavBarWithUser(user: user)
@@ -371,7 +399,7 @@ class MainViewVC: UIViewController {
             print("valores renovados al salir , el usuario\(resp)")
 //            UserDefaults.standard.removeObject(forKey: "completeWalk")
             UserDefaults.standard.removeObject(forKey: userName)
-            player?.stop()
+            
             isPlaying = false
             handleStateMusicBtn()
 

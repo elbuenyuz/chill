@@ -11,6 +11,7 @@ import Firebase
 
 extension LogVC: UINavigationControllerDelegate{
     
+   
     
     //manejar el registro
     @objc func handleRegister(){
@@ -52,6 +53,7 @@ extension LogVC: UINavigationControllerDelegate{
                         let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl,"hasPremium": premium] as [String : Any]
                         //registramos la informacion
                         self.registerUserInfoDatabaseWithUid(uid: uid, values: values)
+                        
                     }
                     
                 })
@@ -73,9 +75,16 @@ extension LogVC: UINavigationControllerDelegate{
             }
             //user succesfully into firebase DB
             print("user succesfully into firebase DB")
+            
             self.dismiss(animated: true, completion: nil)
             
+            
         })
+    }
+    
+    func handleDismiss(){
+        print("skeeping")
+        self.dismiss(animated: true, completion: nil)        
     }
 }
 
