@@ -60,7 +60,7 @@ class LogVC: UIViewController {
         
         let button = UIButton(type: .system)
         button.backgroundColor = blue
-        button.setTitle("Subscribe, for extra weekly content", for: .normal)
+        button.setTitle("Subscribe for extra weekly content", for: .normal)
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
@@ -104,7 +104,7 @@ class LogVC: UIViewController {
     //name
     let nameTextfield: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "name"
+        tf.placeholder = "Name"
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -178,7 +178,7 @@ class LogVC: UIViewController {
         let orange = UIColor(r: 255, g: 183, b: 24)
         let blue = UIColor(r: 25, g: 133, b: 231)
         
-        let sc = UISegmentedControl(items: ["SignIn", "Register"])
+        let sc = UISegmentedControl(items: ["Sign In", "Register"])
         sc.tintColor = .white
         sc.selectedSegmentIndex = 1
         sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
@@ -192,7 +192,7 @@ class LogVC: UIViewController {
         let orange = UIColor(r: 241, g: 240, b: 145)
         
         let lbl = UILabel()
-        lbl.text = "By using Sanap you agree to the Terms, Cookies Policy and Privacy Policy."
+        lbl.text = "By using Chill Mood you agree to the Terms, Cookies Policy and Privacy Policy."
         lbl.font = UIFont(name: "MarcellusSC-Regular", size: 12)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textAlignment = .center
@@ -214,7 +214,7 @@ class LogVC: UIViewController {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             nameTextfield.placeholder = ""
         }else{
-            nameTextfield.placeholder = "name"
+            nameTextfield.placeholder = "Name"
         }
         
         

@@ -45,19 +45,18 @@ extension UIImageView {
 
 class MainViewVC: UIViewController {
     var player: AVAudioPlayer?
-    
     var isPlaying:Bool?
-    
-    
     var currentState: State?
-    var arraySongs: [String] = ["sleep.mp3"]
     var resp:Bool = false
-    
-    
     var isRunning:Bool = false
     var total:Int = 0
     
+    // 1
+    
+    
     //ELEMENTOS
+    var arrayDownloads: [State]?
+    
     let containerView: UIView = {
        let container = UIView()
         container.backgroundColor = UIColor.white.withAlphaComponent(0.40)
@@ -137,19 +136,13 @@ class MainViewVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(containerView)
         setupNavigationBarAndDesignItems()
-//        checkIfUserIsLoggedIn()
-        observeStateAndSaveInfo()
         loadLocalStates()
         player?.numberOfLoops = -1
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         view.backgroundColor = .black
-//        checkIfUserIsLoggedIn()
         checkAndPresentForWalkthroug()
-        
     }
 
     //Views
@@ -170,17 +163,108 @@ class MainViewVC: UIViewController {
         return vc
     }()
     
+    func downloadStatesDB(){
+        let refDat = Database.database().reference().child("moods")
+        //observamos los moods que tenemos disponibles
+        refDat.observe(.value, with: { (snapshot) in
+            //observamos los moods creados en firebase
+            if let dic = snapshot.value as? [String: AnyObject]{
+                //sacamos los moods del array
+                for state in dic{
+                    //trabajamos con el state specifico una vez y se repite en los demas
+                    guard let bgUrl = state.value["urlBgImg"] as? String else { return }
+                    guard let cellUrl = state.value["urlCellImg"] as? String else { return }
+                    guard let urlAudio = state.value["urlAudio"] as? String else{return}
+                    
+                    let storage = Storage.storage()
+                    let storageRef = storage.reference()
+                    let refAudio = storageRef.child("moodAudioUrl/\(urlAudio).mp3")
+                    let refBg = storageRef.child("imagesMoods/\(bgUrl)")
+                    let refCell = storageRef.child("imagesMoods/\(cellUrl)")
+                    
+                    let downloadTask = refAudio.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
+                        if error != nil{
+                            print("error")
+                        }else{
+                            print("success")
+                
+                        }
+                    })
+                }
+            }
+        }, withCancel: nil)
+    }
+    
+    ///download audio form storage
+    var arrayAudio = [Data]()
+    func downloadAudio(urlAudio: String){
+        let storage = Storage.storage()
+        var storageRef = storage.reference()
+        
+        storageRef = storageRef.child("moodAudioUrl/\(urlAudio).mp3")
+        let downloadTask = storageRef.getData(maxSize: 14 * 1024 * 1024) { (data, error) in
+            if error != nil{
+                print("error!\(error.debugDescription)")
+            }else{
+                //we stock the images and save them locally
+                self.arrayAudio.append(data!)
+            }
+        }
+    }
+    
+    
+    var arrayCells = [UIImage]()
+    ///DownloadImageBgFromStorage
+    func  downloadCellFromStorage(nameCell: String){
+        
+        let storage = Storage.storage()
+        var storageRef = storage.reference()
+        
+        //create a reference to the file we want to download
+        storageRef = storageRef.child("imagesMoods/\(nameCell)")
+        
+        let downloadTask = storageRef.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+            if error != nil{
+                print("error!\(error.debugDescription)")
+            }else{
+                //we stock the images and save them locally
+                let dataImg = UIImage(data: data!)
+                self.arrayBgs.append(dataImg!)
+                print("arrays : \(self.arrayBgs.count)")
+            }
+        }
+    }
+    
+    var arrayBgs = [UIImage]()
+    ///DownloadImageCellFromStorage
+    func  downloadBgFromStorage(nameBg: String){
+        
+        let storage = Storage.storage()
+        var storageRef = storage.reference()
+        
+        //create a reference to the file we want to download
+        storageRef = storageRef.child("imagesMoods/\(nameBg)")
+        
+        let downloadTask = storageRef.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+            if error != nil{
+                print("error!\(error.debugDescription)")
+            }else{
+                //we stock the images and save them locally
+                let dataImg = UIImage(data: data!)
+                self.arrayCells.append(dataImg!)
+                print("arrays : \(self.arrayCells.count)")
+            }
+        }
+    }
+    
     
     //load local music
     private func loadLocalStates(){
         //vamos a crear 3 states
             
-            let path = Bundle.main.path(forResource: "creative", ofType:"mp3")!
+            let path = Bundle.main.path(forResource: "positive", ofType:"mp3")!
             
-            do{
-                let statesVC = StatesLauncher()
-                let mainVC = MainViewVC()
-                
+            do{                
                 let stateSleep = State(imgCell: "cell4.png", imgBg:"bg4.png", name: "Sleepy", audioUrl: "sleep", isPremium:false, description: "Many people choose this mood to help them relax, wash away the days troubles and fall asleep. Use this mood to bring you the rest you are looking for after a hard day.")
                 
                 let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study", audioUrl: "study", isPremium: false, description: "Study mood can help  stimulate new neural connections, regain memories,and activate attention span. Use this mood to focus on a specific task.")
@@ -188,9 +272,7 @@ class MainViewVC: UIViewController {
                 let statePositive = State(imgCell: "cell5", imgBg: "bg5", name: "Positivity", audioUrl: "positive", isPremium: false, description: "We all have days when we feel out of sorts. During those days, we are more susceptible to negativite energy than other days. Use the Positivity mood to balance the energy of your body! Take a deep breath, and let the negativity out of your body.")
                 
                 let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax", audioUrl: "relax", isPremium: false, description: "Sometimes we concentrate so much on the future, that we stress ourselves out.  Anxiety about the future takes up a significant portion of our thoughts. Relax mood will help you cool down. Remember, live in the present. Now is the only moment that is important. Use this mood to bring calm to your day!")
-                let stateMeditation = State(imgCell: "cell9", imgBg: "bg9", name: "Reflection", audioUrl: "creative", isPremium: false, description: "The Meditation mood can help you when you are feeling nostalgic. It can help you bring back positive memories, and make you remember all of your past successes. Remember yourself, and remember how truly remarkable you are.")
-                
-                let stateCreative = State(imgCell: "cell10", imgBg: "bg10", name:"Creativity", audioUrl: "creative", isPremium: true, description: "in the groove, and keep you cool and creative when you need it the most. Fire up your senses and get your creative juices flowing. Use this Mood to bring your creative side.")
+               
                
                 
                 
@@ -198,20 +280,28 @@ class MainViewVC: UIViewController {
                 stateLaunch.states.append(stateRelax)
                 stateLaunch.states.append(stateStudy)
                 stateLaunch.states.append(statePositive)
-                stateLaunch.states.append(stateCreative)
-                stateLaunch.states.append(stateMeditation)
+
               
                 
-                handleState(state: stateMeditation)
-                handleAudio(state: stateMeditation)
-                currentState = stateMeditation
-              
+                handleState(state: statePositive)
+                handleAudio(state: statePositive)
+                currentState = statePositive
                 
             }catch{
-                print("error")
+ 
             }
     }
     
+    //we are going to download the information from firebase and create our song
+    
+    
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+
     //received the state from stateLauncher
     func handleState(state:State){
        
@@ -220,7 +310,7 @@ class MainViewVC: UIViewController {
             songNameLabel.text = state.name
             self.timerLaunch.handleDesc(state: state)
             currentState = state
-        
+            print("receiving state:\(currentState?.name)")
         }
         
         
@@ -241,7 +331,6 @@ class MainViewVC: UIViewController {
         settingsLaunch.showSettings()
     }
     
-    var access = false
     func handleAudio(state:State){
         guard let urlSong = state.audioUrl else {return}
          guard let path = Bundle.main.path(forResource: urlSong, ofType:"mp3") else{return}
@@ -258,7 +347,6 @@ class MainViewVC: UIViewController {
             }
         case false?:
             playAudio(path: path)
-            print("playing music not premium")
             
         default:
             return
@@ -282,14 +370,26 @@ class MainViewVC: UIViewController {
     func handleStateMusicBtn(){
         
         if isPlaying == true{
-            playBtn.setImage(#imageLiteral(resourceName: "pauseBtn").withRenderingMode(.alwaysOriginal), for: .normal)
-            isPlaying = false
-            player?.play()
+            print("current state: \(currentState?.name)")
+            if Auth.auth().currentUser?.uid == nil, currentState?.isPremium == true{
+                print("no soy vip, y el audio si es vip")
+                playBtn.setImage(#imageLiteral(resourceName: "playBtn").withRenderingMode(.alwaysOriginal), for: .normal)
+                player?.pause()
+                print("1 aqui")
+            }else{
+                player?.play()
+                playBtn.setImage(#imageLiteral(resourceName: "pauseBtn").withRenderingMode(.alwaysOriginal), for: .normal)
+                print("dos aqui")
+                isPlaying = false
+            }
+            
+            
         }else{
             
             isPlaying = true
             playBtn.setImage(#imageLiteral(resourceName: "playBtn").withRenderingMode(.alwaysOriginal), for: .normal)
             player?.pause()
+            print("tres aqui")
         }
     }
     
@@ -309,6 +409,9 @@ class MainViewVC: UIViewController {
     }
     
     func checkAndPresentForWalkthroug(){
+        DispatchQueue.main.async {
+           self.downloadStatesDB()
+        }
         resp = UserDefaults.standard.bool(forKey: "completeWalk")
       
         switch resp {
@@ -367,29 +470,6 @@ class MainViewVC: UIViewController {
             }, withCancel: nil)
         }
     }
-    
-    var states = [State]()
-    
-    //observe the states
-    func observeStateAndSaveInfo(){
-        let refDat = Database.database().reference().child("state")
-        states = []
-        
-                refDat.observe(.value, with: { (snapshot) in
-                    let state = State()
-                    if let dic = snapshot.value as? [String: AnyObject]{
-                        
-                        
-                        for state in dic{
-                            var nameState:String = state.key
-                            
-                        }
-                    }
-//                    self.stateLaunch.fetchDataToCollection(Array: self.states)
-                }, withCancel: nil)
-        
-            }
-    
     //we handle the logOut of the user
     func handleLogout(){
         print("Handle logOut")

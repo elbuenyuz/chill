@@ -14,6 +14,7 @@ class PageVC: UIPageViewController, UIPageViewControllerDataSource, UIPageViewCo
     let initialPage = 0
     
     var pageControl = UIPageControl()
+    var homeController: MainViewVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,6 +141,8 @@ class FirstVC: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(infoLabel)
         
+        
+        
         bg.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         bg.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         bg.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -213,6 +216,7 @@ class MidVC: UIViewController {
         view.addSubview(blurView)
         view.addSubview(titleLabel)
         view.addSubview(infoLabel)
+        
         
         bg.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         bg.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true

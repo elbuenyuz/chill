@@ -153,11 +153,11 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
         
         let state = states[indexPath.item]
 
-        self.homeController?.handleAudio(state: state)
-
         handledismissBlackView(setting: state)
         DispatchQueue.main.async(execute: {
             self.homeController?.handleState(state:state)
+            self.homeController?.handleAudio(state: state)
+            print("sending state \(state.name)")
         })
         
     }
