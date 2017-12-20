@@ -143,6 +143,7 @@ class MainViewVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         view.backgroundColor = .black
         checkAndPresentForWalkthroug()
+        downloadStatesDB()
     }
 
     //Views
@@ -172,10 +173,8 @@ class MainViewVC: UIViewController {
                 //sacamos los moods del array
                 for state in dic{
                     //trabajamos con el state specifico una vez y se repite en los demas
-                    guard let bgUrl = state.value["urlBgImg"] as? String else { return }
-                    guard let cellUrl = state.value["urlCellImg"] as? String else { return }
-                    guard let urlAudio = state.value["urlAudio"] as? String else{return}
-                    
+                    guard let bgUrl = state.value["urlBgImg"] as? String, let cellUrl = state.value["urlCellImg"] as? String, let urlAudio = state.value["urlAudio"] as? String, let name = state.value["name"] as? String, let premium = state.value["isPremium"] as? Bool, let desc = state.value["description"] as? String  else { return }
+  
                     let storage = Storage.storage()
                     let storageRef = storage.reference()
                     let refAudio = storageRef.child("moodAudioUrl/\(urlAudio).mp3")
@@ -187,6 +186,16 @@ class MainViewVC: UIViewController {
                             print("error")
                         }else{
                             print("success")
+                            
+                            let bg = self.downloadBgFromStorage(nameBg: bgUrl)
+                            let cell = self.downloadCellFromStorage(nameCell: cellUrl)
+                            let nameMood = name
+                            let isPremium = premium
+                            let description = desc
+                            
+                            //create the Mood State
+                            
+                            
                 
                         }
                     })
@@ -196,7 +205,6 @@ class MainViewVC: UIViewController {
     }
     
     ///download audio form storage
-    var arrayAudio = [Data]()
     func downloadAudio(urlAudio: String){
         let storage = Storage.storage()
         var storageRef = storage.reference()
@@ -207,54 +215,57 @@ class MainViewVC: UIViewController {
                 print("error!\(error.debugDescription)")
             }else{
                 //we stock the images and save them locally
-                self.arrayAudio.append(data!)
             }
         }
     }
     
-    
-    var arrayCells = [UIImage]()
     ///DownloadImageBgFromStorage
-    func  downloadCellFromStorage(nameCell: String){
+    func  downloadCellFromStorage(nameCell: String) -> UIImage?{
         
         let storage = Storage.storage()
         var storageRef = storage.reference()
+        var img = #imageLiteral(resourceName: "bg")
         
         //create a reference to the file we want to download
         storageRef = storageRef.child("imagesMoods/\(nameCell)")
         
-        let downloadTask = storageRef.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+        let downloadTask = storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) in
             if error != nil{
                 print("error!\(error.debugDescription)")
+                
             }else{
                 //we stock the images and save them locally
-                let dataImg = UIImage(data: data!)
-                self.arrayBgs.append(dataImg!)
-                print("arrays : \(self.arrayBgs.count)")
+                if let dataImg = UIImage(data: data!){
+                    img = dataImg
+                }
+                
             }
         }
+        return img
     }
     
-    var arrayBgs = [UIImage]()
     ///DownloadImageCellFromStorage
-    func  downloadBgFromStorage(nameBg: String){
+    func  downloadBgFromStorage(nameBg: String) -> UIImage{
         
         let storage = Storage.storage()
         var storageRef = storage.reference()
+        var img = #imageLiteral(resourceName: "bg")
         
         //create a reference to the file we want to download
         storageRef = storageRef.child("imagesMoods/\(nameBg)")
         
-        let downloadTask = storageRef.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+        let downloadTask = storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) in
             if error != nil{
                 print("error!\(error.debugDescription)")
             }else{
                 //we stock the images and save them locally
                 let dataImg = UIImage(data: data!)
-                self.arrayCells.append(dataImg!)
-                print("arrays : \(self.arrayCells.count)")
+                if let dataImg = UIImage(data: data!){
+                    img = dataImg
+                }
             }
         }
+        return img
     }
     
     
@@ -409,9 +420,8 @@ class MainViewVC: UIViewController {
     }
     
     func checkAndPresentForWalkthroug(){
-        DispatchQueue.main.async {
-           self.downloadStatesDB()
-        }
+        
+        
         resp = UserDefaults.standard.bool(forKey: "completeWalk")
       
         switch resp {
