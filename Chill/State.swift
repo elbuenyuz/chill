@@ -22,14 +22,14 @@ import AVFoundation
 //}
 
 class State: NSObject {
-    var imgCell: String?
-    var imgBg: String?
+    var imgCell: UIImage?
+    var imgBg: UIImage?
     var name: String?
     var audioUrl:String?
     var isPremium: Bool?
     var desc:String?
     
-    init(imgCell: String, imgBg:String, name: String, audioUrl:String, isPremium:Bool,description:String) {
+    init(imgCell: UIImage, imgBg:UIImage, name: String, audioUrl:String, isPremium:Bool,description:String) {
         self.imgCell = imgCell
         self.imgBg = imgBg
         self.name = name

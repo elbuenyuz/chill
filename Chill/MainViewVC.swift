@@ -51,6 +51,7 @@ class MainViewVC: UIViewController {
     var isRunning:Bool = false
     var total:Int = 0
     
+    
     // 1
     
     
@@ -163,8 +164,11 @@ class MainViewVC: UIViewController {
         let vc = TimerLauncher()
         return vc
     }()
-    
+
     func downloadStatesDB(){
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
         let refDat = Database.database().reference().child("moods")
         //observamos los moods que tenemos disponibles
         refDat.observe(.value, with: { (snapshot) in
@@ -173,67 +177,46 @@ class MainViewVC: UIViewController {
                 //sacamos los moods del array
                 for state in dic{
                     //trabajamos con el state specifico una vez y se repite en los demas
-                    guard let bgUrl = state.value["urlBgImg"] as? String, let cellUrl = state.value["urlCellImg"] as? String, let urlAudio = state.value["urlAudio"] as? String, let name = state.value["name"] as? String, let premium = state.value["isPremium"] as? Bool, let desc = state.value["description"] as? String  else { return }
-  
-                    let storage = Storage.storage()
-                    let storageRef = storage.reference()
-                    let refAudio = storageRef.child("moodAudioUrl/\(urlAudio).mp3")
-                    let refBg = storageRef.child("imagesMoods/\(bgUrl)")
-                    let refCell = storageRef.child("imagesMoods/\(cellUrl)")
+                    guard let bgUrl = state.value["urlBgImg"] as? String, let cellUrl = state.value["urlCellImg"] as? String, let urlAudio = state.value["urlAudio"] as? String, let name = state.value["name"] as? String, let premium = state.value["isPremium"] as? Bool, let desc = state.value["description"] as? String  else { return print("error guard states") }
                     
-                    let downloadTask = refAudio.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
-                        if error != nil{
-                            print("error")
-                        }else{
-                            print("success")
-                            
-                            let bg = self.downloadBgFromStorage(nameBg: bgUrl)
-                            let cell = self.downloadCellFromStorage(nameCell: cellUrl)
-                            let nameMood = name
-                            let isPremium = premium
-                            let description = desc
-                            
-                            //create the Mood State
-                            
-                            
-                
-                        }
-                    })
+                    let refAudio = storageRef.child("moodAudioUrl/\(urlAudio).mp3")
+                    
+                    if let cell = self.downloadCellFromStorage(nameCell: cellUrl), let bg = self.downloadBgFromStorage(nameBg: bgUrl) {
+                        print("listas para usar")
+                        refAudio.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
+                            if error != nil{
+                                print("error")
+                            }else{
+                                print("success")
+                                //create the Mood State
+                                let state = State(imgCell: cell, imgBg: bg, name: name, audioUrl: urlAudio, isPremium: premium, description: desc)
+                                DispatchQueue.main.async {
+                                    self.stateLaunch.states.append(state)
+                                    self.stateLaunch.collectionV.reloadData()
+                                }
+                            }
+                        })
+                    }
                 }
             }
         }, withCancel: nil)
     }
     
-    ///download audio form storage
-    func downloadAudio(urlAudio: String){
-        let storage = Storage.storage()
-        var storageRef = storage.reference()
-        
-        storageRef = storageRef.child("moodAudioUrl/\(urlAudio).mp3")
-        let downloadTask = storageRef.getData(maxSize: 14 * 1024 * 1024) { (data, error) in
-            if error != nil{
-                print("error!\(error.debugDescription)")
-            }else{
-                //we stock the images and save them locally
-            }
-        }
-    }
-    
     ///DownloadImageBgFromStorage
     func  downloadCellFromStorage(nameCell: String) -> UIImage?{
-        
+        var img:UIImage?
         let storage = Storage.storage()
         var storageRef = storage.reference()
-        var img = #imageLiteral(resourceName: "bg")
         
         //create a reference to the file we want to download
         storageRef = storageRef.child("imagesMoods/\(nameCell)")
         
-        let downloadTask = storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) in
+        storageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
             if error != nil{
-                print("error!\(error.debugDescription)")
+                print("error!\(error)")
                 
             }else{
+                print("img download Cell")
                 //we stock the images and save them locally
                 if let dataImg = UIImage(data: data!){
                     img = dataImg
@@ -245,19 +228,19 @@ class MainViewVC: UIViewController {
     }
     
     ///DownloadImageCellFromStorage
-    func  downloadBgFromStorage(nameBg: String) -> UIImage{
-        
+    func  downloadBgFromStorage(nameBg: String) -> UIImage?{
+        var img: UIImage?
         let storage = Storage.storage()
         var storageRef = storage.reference()
-        var img = #imageLiteral(resourceName: "bg")
         
         //create a reference to the file we want to download
         storageRef = storageRef.child("imagesMoods/\(nameBg)")
         
-        let downloadTask = storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) in
+        let downloadTask = storageRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
             if error != nil{
                 print("error!\(error.debugDescription)")
             }else{
+                print("img download Bg")
                 //we stock the images and save them locally
                 let dataImg = UIImage(data: data!)
                 if let dataImg = UIImage(data: data!){
@@ -276,17 +259,17 @@ class MainViewVC: UIViewController {
             let path = Bundle.main.path(forResource: "positive", ofType:"mp3")!
             
             do{                
-                let stateSleep = State(imgCell: "cell4.png", imgBg:"bg4.png", name: "Sleepy", audioUrl: "sleep", isPremium:false, description: "Many people choose this mood to help them relax, wash away the days troubles and fall asleep. Use this mood to bring you the rest you are looking for after a hard day.")
+                let stateSleep = State(imgCell: #imageLiteral(resourceName: "cell4"), imgBg: #imageLiteral(resourceName: "bg4"), name: "Sleepy", audioUrl: "sleep", isPremium:false, description: "Many people choose this mood to help them relax, wash away the days troubles and fall asleep. Use this mood to bring you the rest you are looking for after a hard day.")
                 
-                let stateStudy = State(imgCell: "cell3", imgBg: "bg3", name: "Study", audioUrl: "study", isPremium: false, description: "Study mood can help  stimulate new neural connections, regain memories,and activate attention span. Use this mood to focus on a specific task.")
+                let stateStudy = State(imgCell: #imageLiteral(resourceName: "cell3"), imgBg: #imageLiteral(resourceName: "bg3"), name: "Study", audioUrl: "study", isPremium: false, description: "Study mood can help  stimulate new neural connections, regain memories,and activate attention span. Use this mood to focus on a specific task.")
                 
-                let statePositive = State(imgCell: "cell5", imgBg: "bg5", name: "Positivity", audioUrl: "positive", isPremium: false, description: "We all have days when we feel out of sorts. During those days, we are more susceptible to negativite energy than other days. Use the Positivity mood to balance the energy of your body! Take a deep breath, and let the negativity out of your body.")
+                let statePositive = State(imgCell: #imageLiteral(resourceName: "cell5"), imgBg: #imageLiteral(resourceName: "bg5"), name: "Positivity", audioUrl: "positive", isPremium: false, description: "We all have days when we feel out of sorts. During those days, we are more susceptible to negativite energy than other days. Use the Positivity mood to balance the energy of your body! Take a deep breath, and let the negativity out of your body.")
                 
-                let stateRelax = State(imgCell: "cell2", imgBg: "bg2", name: "Relax", audioUrl: "relax", isPremium: false, description: "Sometimes we concentrate so much on the future, that we stress ourselves out.  Anxiety about the future takes up a significant portion of our thoughts. Relax mood will help you cool down. Remember, live in the present. Now is the only moment that is important. Use this mood to bring calm to your day!")
+                let stateRelax = State(imgCell: #imageLiteral(resourceName: "cell2"), imgBg: #imageLiteral(resourceName: "bg2"), name: "Relax", audioUrl: "relax", isPremium: false, description: "Sometimes we concentrate so much on the future, that we stress ourselves out.  Anxiety about the future takes up a significant portion of our thoughts. Relax mood will help you cool down. Remember, live in the present. Now is the only moment that is important. Use this mood to bring calm to your day!")
                
                
                 
-                
+            
                 stateLaunch.states.append(stateSleep)
                 stateLaunch.states.append(stateRelax)
                 stateLaunch.states.append(stateStudy)
@@ -316,7 +299,7 @@ class MainViewVC: UIViewController {
     //received the state from stateLauncher
     func handleState(state:State){
        
-        if let imagen = UIImage(named: state.imgBg!), let descrip = state.desc{
+        if let imagen = state.imgBg, let descrip = state.desc{
             setupBackgroundAndBlur(image: imagen)
             songNameLabel.text = state.name
             self.timerLaunch.handleDesc(state: state)

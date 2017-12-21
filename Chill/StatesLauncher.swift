@@ -66,8 +66,8 @@ class StatesLauncher: NSObject ,UICollectionViewDelegate, UICollectionViewDataSo
 
                 state.name = name
                 state.isPremium = premium
-                state.imgCell = imgCell
-                state.imgBg = imgBg
+//                state.imgCell = imgCell
+//                state.imgBg = imgBg
                 state.audioUrl = audioUrl
 
                     print("\(state.name)")
